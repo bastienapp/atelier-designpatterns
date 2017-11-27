@@ -1,11 +1,11 @@
 package fr.wildcodeschool.atelierdesignpatterns;
 
-class NewsModel {
+public class NewsModel {
 
     private String headline;
     private String newsContent;
 
-    NewsModel() {
+    public NewsModel() {
     }
 
     String getHeadline() {
