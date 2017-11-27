@@ -8,10 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class MainActivity extends AppCompatActivity implements Observer {
+public class MainActivity extends AppCompatActivity {
 
     private NewsAdapter mAdapter = null;
 
@@ -41,14 +38,5 @@ public class MainActivity extends AppCompatActivity implements Observer {
                 startActivity(new Intent(MainActivity.this, JournalistActivity.class));
             }
         });
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
-        if (observable instanceof NewsSingleton) {
-            // update the adapter and refresh the list
-            NewsSingleton newsSingleton = (NewsSingleton) observable;
-            mAdapter.updateAdapter(newsSingleton.getNews());
-        }
     }
 }

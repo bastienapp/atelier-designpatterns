@@ -45,11 +45,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         return mNewsList.size();
     }
 
-    void updateAdapter(List<NewsModel> newsList) {
-        mNewsList = newsList;
-        notifyDataSetChanged();
-    }
-
     public interface NewsClickListener {
 
         void onClick(NewsModel newsModel);
@@ -63,5 +58,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             headline = view.findViewById(R.id.newsitem_headline);
             content = view.findViewById(R.id.newsitem_content);
         }
+    }
+
+    void updateAdapter(List<NewsModel> newsList) {
+        mNewsList = newsList;
+        notifyDataSetChanged();
     }
 }
