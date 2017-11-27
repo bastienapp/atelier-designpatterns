@@ -16,7 +16,7 @@ import java.util.Observable;
 public class NewsSingleton extends Observable {
     private final String TAG = getClass().getSimpleName();
 
-    private static NewsSingleton mInstance;
+    private static NewsSingleton sInstance;
     private static final String NEWS_ENTRY = "news";
 
     private NewsModel mSelectedNew = null;
@@ -43,10 +43,10 @@ public class NewsSingleton extends Observable {
     }
 
     public static NewsSingleton getInstance() {
-        if (mInstance == null) {
-            mInstance = new NewsSingleton();
+        if (sInstance == null) {
+            sInstance = new NewsSingleton();
         }
-        return mInstance;
+        return sInstance;
     }
 
     public void setSelectedNews(NewsModel news) {
