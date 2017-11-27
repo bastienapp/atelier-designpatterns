@@ -5,10 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+public class MainActivity extends AppCompatActivity implements Observer{
+    private final String TAG = getClass().getSimpleName();
 
     private NewsAdapter mAdapter = null;
 
@@ -18,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // TODO : init singleton then load news
+        final NewsSingleton newsSingleton = NewsSingleton.getInstance();
+        newsSingleton.addObserver(this);
 
         // setup the adapter
         RecyclerView newsListView = findViewById(R.id.news_list);
@@ -26,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new NewsAdapter(new NewsAdapter.NewsClickListener() {
             @Override
             public void onClick(NewsModel newsModel) {
-                // TODO : call NewsActivity
+               newsSingleton.setSelectedNews(newsModel);
+               startActivity(new Intent(MainActivity.this, NewsActivity.class));
             }
         });
         newsListView.setAdapter(mAdapter);
@@ -38,5 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, JournalistActivity.class));
             }
         });
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof NewsSingleton) {
+            mAdapter.updateAdapter( (ArrayList<NewsModel>) arg );
+            Log.d(TAG, "update() called with: o = [" + o + "], arg = [" + arg + "]");
+        }
     }
 }

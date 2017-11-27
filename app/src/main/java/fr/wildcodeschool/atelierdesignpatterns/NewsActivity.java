@@ -15,5 +15,9 @@ public class NewsActivity extends AppCompatActivity {
         TextView content = findViewById(R.id.newsitem_content);
 
         // TODO : show headline and content
+        NewsSingleton newsSingleton = NewsSingleton.getInstance();
+        NewsModel news = newsSingleton.getSelectedNews();
+        headline.setText(news.getHeadline());
+        content.setText(news.getNewsContent());
     }
 }
