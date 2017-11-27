@@ -8,19 +8,19 @@ public class NewsModel {
     public NewsModel() {
     }
 
-    String getHeadline() {
+    public String getHeadline() {
         return headline;
     }
 
-    void setHeadline(String headline) {
+    public void setHeadline(String headline) {
         this.headline = headline;
     }
 
-    String getNewsContent() {
+    public String getNewsContent() {
         return newsContent;
     }
 
-    void setNewsContent(String newContent) {
+    public void setNewsContent(String newContent) {
         this.newsContent = newContent;
     }
 }
