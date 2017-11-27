@@ -3,12 +3,12 @@ package fr.wildcodeschool.atelierdesignpatterns;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class NewsModel implements Parcelable {
+public class NewsModel implements Parcelable {
 
     private String headline;
     private String newsContent;
 
-    NewsModel() {
+    public NewsModel() {
     }
 
     protected NewsModel(Parcel in) {
