@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/newsitem_headline"
+            android:id="@+id/news_headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
@@ -23,7 +23,7 @@
             tools:text="Headline" />
 
         <TextView
-            android:id="@+id/newsitem_content"
+            android:id="@+id/news_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
