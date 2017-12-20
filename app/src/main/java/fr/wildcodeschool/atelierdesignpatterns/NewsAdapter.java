@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
     private List<NewsModel> mNewsList;
-    private View mItemView;
     private NewsClickListener mListener;
 
     public NewsAdapter(NewsClickListener listener) {
@@ -25,10 +25,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mItemView = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_news, parent, false);
 
-        return new NewsViewHolder(mItemView);
+        return new NewsViewHolder(view);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         final NewsModel newsModel = mNewsList.get(position);
         holder.headline.setText(newsModel.getHeadline());
         holder.content.setText(newsModel.getNewsContent());
-        mItemView.setOnClickListener(new View.OnClickListener() {
+        holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onClick(newsModel);
@@ -60,10 +60,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
     class NewsViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout container;
         TextView headline, content;
 
         NewsViewHolder(View view) {
             super(view);
+            container = view.findViewById(R.id.newsitem_container);
             headline = view.findViewById(R.id.newsitem_headline);
             content = view.findViewById(R.id.newsitem_content);
         }

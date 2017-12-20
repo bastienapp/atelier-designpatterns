@@ -15,9 +15,9 @@ public class NewsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         NewsModel newsModel = intent.getParcelableExtra("news");
 
-        TextView headline = findViewById(R.id.newsitem_headline);
+        TextView headline = findViewById(R.id.news_headline);
         headline.setText(newsModel.getHeadline());
-        TextView content = findViewById(R.id.newsitem_content);
+        TextView content = findViewById(R.id.news_content);
         content.setText(newsModel.getNewsContent());
     }
 }
